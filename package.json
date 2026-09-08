@@ -1,0 +1,13 @@
+{
+  "name": "campus-project-hub",
+  "version": "1.0.0",
+  "description": "Campus Project Hub - Year-wise & Batch-wise Student Project Management System",
+  "type": "module",
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "start": "node start-dev.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

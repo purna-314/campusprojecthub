@@ -1,0 +1,895 @@
+{
+  "batches": [
+    {
+      "id": "batch-2024-2028",
+      "name": "Batch 2024-2028",
+      "year": 1,
+      "yearLabel": "1st Year (Freshman)",
+      "projectType": "Social Innovation & Community Impact Project",
+      "department": "Common Core / Engineering Sciences",
+      "academicYear": "2024-2025",
+      "coordinator": "Dr. Maya Patel",
+      "maxTeamSize": 4,
+      "minTeamSize": 2,
+      "status": "active",
+      "milestones": [
+        {
+          "id": "m1",
+          "title": "Problem Identification & Proposal",
+          "weight": 20,
+          "dueDate": "2026-10-15",
+          "description": "Define real-world campus or local community challenge, team charter, and planned solution."
+        },
+        {
+          "id": "m2",
+          "title": "Empathy Study & Solution Concept",
+          "weight": 30,
+          "dueDate": "2026-11-20",
+          "description": "Field interviews, basic wireframes or architectural sketch, feasibility study."
+        },
+        {
+          "id": "m3",
+          "title": "Working Prototype & Poster Exhibition",
+          "weight": 50,
+          "dueDate": "2026-12-18",
+          "description": "Functional prototype demonstration, project report, and poster presentation."
+        }
+      ]
+    },
+    {
+      "id": "batch-2023-2027",
+      "name": "Batch 2023-2027",
+      "year": 2,
+      "yearLabel": "2nd Year (Sophomore)",
+      "projectType": "Minor Hardware / Software Project",
+      "department": "Computer Science & Engineering",
+      "academicYear": "2024-2025",
+      "coordinator": "Prof. David Kumar",
+      "maxTeamSize": 3,
+      "minTeamSize": 2,
+      "status": "active",
+      "milestones": [
+        {
+          "id": "m1",
+          "title": "Synopsis & Tech Stack Finalization",
+          "weight": 20,
+          "dueDate": "2026-09-30",
+          "description": "Problem statement, technology justification, hardware/software specifications."
+        },
+        {
+          "id": "m2",
+          "title": "System Architecture & Database Schema",
+          "weight": 25,
+          "dueDate": "2026-10-25",
+          "description": "UML diagrams, database ERD, API schema, basic circuit schematic if IoT."
+        },
+        {
+          "id": "m3",
+          "title": "Module 1 Implementation & Alpha Demo",
+          "weight": 25,
+          "dueDate": "2026-11-18",
+          "description": "Core functional logic and user authentication or primary sensor integration."
+        },
+        {
+          "id": "m4",
+          "title": "Final Demonstration & Technical Documentation",
+          "weight": 30,
+          "dueDate": "2026-12-10",
+          "description": "End-to-end working software/hardware, test suite, and formatted lab report."
+        }
+      ]
+    },
+    {
+      "id": "batch-2022-2026",
+      "name": "Batch 2022-2026",
+      "year": 3,
+      "yearLabel": "3rd Year (Junior)",
+      "projectType": "Domain Specialization Mini-Project",
+      "department": "Computer Science & Engineering",
+      "academicYear": "2024-2025",
+      "coordinator": "Dr. Sarah Jenkins",
+      "maxTeamSize": 3,
+      "minTeamSize": 1,
+      "status": "active",
+      "milestones": [
+        {
+          "id": "m1",
+          "title": "Research Survey & Proposal",
+          "weight": 15,
+          "dueDate": "2026-09-20",
+          "description": "Literature review of 5 IEEE/ACM papers, novel methodology proposed, expected KPIs."
+        },
+        {
+          "id": "m2",
+          "title": "Software Requirement Specification (SRS)",
+          "weight": 20,
+          "dueDate": "2026-10-15",
+          "description": "Complete SRS document adhering to IEEE 830 standards with architecture models."
+        },
+        {
+          "id": "m3",
+          "title": "Mid-Term Progress & Working Sub-systems",
+          "weight": 30,
+          "dueDate": "2026-11-10",
+          "description": "50% implementation milestone, pipeline integration demo, unit test coverage."
+        },
+        {
+          "id": "m4",
+          "title": "Final Deliverable, Research Paper & Viva",
+          "weight": 35,
+          "dueDate": "2026-12-05",
+          "description": "Full working build, IEEE conference draft paper, GitHub repository, live viva."
+        }
+      ]
+    },
+    {
+      "id": "batch-2021-2025",
+      "name": "Batch 2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "academicYear": "2024-2025",
+      "coordinator": "Prof. Alan Turing",
+      "maxTeamSize": 4,
+      "minTeamSize": 2,
+      "status": "active",
+      "milestones": [
+        {
+          "id": "m1",
+          "title": "Project Charter & Guide Approval",
+          "weight": 15,
+          "dueDate": "2026-09-10",
+          "description": "Guide confirmation, feasibility analysis, project roadmap, and ethics clearance."
+        },
+        {
+          "id": "m2",
+          "title": "Design & Architectural Blueprint",
+          "weight": 20,
+          "dueDate": "2026-10-05",
+          "description": "Low-level and high-level designs, cloud architecture, security audit plan."
+        },
+        {
+          "id": "m3",
+          "title": "Pre-Evaluation & Mid-Term Viva",
+          "weight": 25,
+          "dueDate": "2026-10-30",
+          "description": "Internal committee evaluation, 70% implementation demo, peer reviews."
+        },
+        {
+          "id": "m4",
+          "title": "External Viva, Thesis & Product Launch",
+          "weight": 40,
+          "dueDate": "2026-11-28",
+          "description": "External university viva, bound dissertation book, production deployment."
+        }
+      ]
+    }
+  ],
+  "faculty": [
+    {
+      "id": "fac-101",
+      "name": "Dr. Sarah Jenkins",
+      "designation": "Associate Professor",
+      "department": "Computer Science & Engineering",
+      "email": "s.jenkins@campus.edu",
+      "specializations": [
+        "Machine Learning",
+        "Cloud Computing",
+        "Distributed Systems"
+      ],
+      "currentLoad": 4,
+      "maxLoad": 6,
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "fac-102",
+      "name": "Prof. Alan Turing",
+      "designation": "Professor & Head of Department",
+      "department": "Computer Science & Engineering",
+      "email": "a.turing@campus.edu",
+      "specializations": [
+        "Algorithms",
+        "Cryptography",
+        "Theoretical Computer Science"
+      ],
+      "currentLoad": 3,
+      "maxLoad": 5,
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "fac-103",
+      "name": "Dr. Maya Patel",
+      "designation": "Assistant Professor",
+      "department": "Electronics & Communication",
+      "email": "m.patel@campus.edu",
+      "specializations": [
+        "Embedded Systems",
+        "IoT & Edge Computing",
+        "Robotics"
+      ],
+      "currentLoad": 3,
+      "maxLoad": 6,
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "fac-104",
+      "name": "Prof. David Kumar",
+      "designation": "Associate Professor",
+      "department": "Information Technology",
+      "email": "d.kumar@campus.edu",
+      "specializations": [
+        "Full Stack Development",
+        "Cyber Security",
+        "DevOps"
+      ],
+      "currentLoad": 4,
+      "maxLoad": 6,
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1788842552235",
+      "title": "sdgasg",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "AI / Machine Learning",
+      "tags": [
+        "React",
+        "Node.js",
+        "TailwindCSS"
+      ],
+      "abstract": "adsfgdfvzx",
+      "githubUrl": "https://github.com//adfkdfskj",
+      "demoUrl": "https://adsffhew.sdf",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-101",
+      "mentorName": "Dr. Sarah Jenkins",
+      "teamLead": {
+        "name": "Alex Rivera",
+        "rollNo": "21CS042",
+        "email": "alex.rivera@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Alex Rivera",
+          "rollNo": "21CS042",
+          "email": "alex.rivera@student.campus.edu",
+          "role": "Team Lead"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m2": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 2,
+      "createdAt": "2026-09-08T04:42:32.235Z"
+    },
+    {
+      "id": "proj-1788842512239",
+      "title": "sgga",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "AI / Machine Learning",
+      "tags": [
+        "React",
+        "Node.js",
+        "TailwindCSSzgdf"
+      ],
+      "abstract": "sdfgsdfb",
+      "githubUrl": "https:/github/adsfsd",
+      "demoUrl": "",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-101",
+      "mentorName": "Dr. Sarah Jenkins",
+      "teamLead": {
+        "name": "Alex Rivera",
+        "rollNo": "21CS042",
+        "email": "alex.rivera@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Alex Rivera",
+          "rollNo": "21CS042",
+          "email": "alex.rivera@student.campus.edu",
+          "role": "Team Lead"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m2": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 0,
+      "createdAt": "2026-09-08T04:41:52.239Z"
+    },
+    {
+      "id": "proj-1788842166249",
+      "title": "Automated Solar Tracker for Campus Greenhouses",
+      "batchId": "batch-2023-2027",
+      "year": 2,
+      "yearLabel": "2nd Year (Sophomore)",
+      "projectType": "Minor Hardware / Software Project",
+      "department": "Computer Science & Engineering",
+      "domain": "IoT / CleanTech",
+      "tags": [
+        "Arduino",
+        "C++",
+        "LDR",
+        "Solar"
+      ],
+      "abstract": "Dual-axis solar tracking system for optimizing photovoltaic efficiency.",
+      "githubUrl": "https://github.com/campus/solar-tracker",
+      "demoUrl": "",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-103",
+      "mentorName": "Dr. Maya Patel",
+      "teamLead": {
+        "name": "Kavita Roy",
+        "rollNo": "23EC011",
+        "email": "kavita@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Kavita Roy",
+          "rollNo": "23EC011",
+          "email": "kavita@student.campus.edu",
+          "role": "Lead"
+        },
+        {
+          "name": "Sameer Sen",
+          "rollNo": "23EC044",
+          "email": "sameer@student.campus.edu",
+          "role": "Hardware"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "submittedAt": "2026-09-08",
+          "fileUrl": "https://campus.storage/docs/solar_synopsis.pdf",
+          "githubBranch": "main",
+          "notes": "Initial circuit diagrams and bill of materials completed.",
+          "score": 18,
+          "feedback": "Feasible sensor configuration. Approved to procure LDR components.",
+          "gradedAt": "2026-09-08"
+        },
+        "m2": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 1,
+      "createdAt": "2026-09-08T04:36:06.249Z"
+    },
+    {
+      "id": "proj-401",
+      "title": "NeuroScan AI: Automated Retinal Disease Detection using Fundus Imaging",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "AI / Healthcare",
+      "tags": [
+        "Deep Learning",
+        "PyTorch",
+        "FastAPI",
+        "React",
+        "Medical Imaging"
+      ],
+      "abstract": "A clinical decision support platform leveraging deep convolutional neural networks and vision transformers to identify Diabetic Retinopathy, Glaucoma, and Macular Degeneration with 96.4% sensitivity from standard ocular fundus scans.",
+      "githubUrl": "https://github.com/campus-hub/neuroscan-ai",
+      "demoUrl": "https://neuroscan-ai.demo.campus.edu",
+      "status": "approved",
+      "overallScore": 92,
+      "mentorId": "fac-101",
+      "mentorName": "Dr. Sarah Jenkins",
+      "teamLead": {
+        "name": "Alex Rivera",
+        "rollNo": "21CS042",
+        "email": "alex.rivera@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Alex Rivera",
+          "rollNo": "21CS042",
+          "email": "alex.rivera@student.campus.edu",
+          "role": "Team Lead & ML Engineer"
+        },
+        {
+          "name": "Priya Sharma",
+          "rollNo": "21CS088",
+          "email": "priya.s@student.campus.edu",
+          "role": "Full Stack Developer"
+        },
+        {
+          "name": "Marcus Vance",
+          "rollNo": "21CS054",
+          "email": "marcus.v@student.campus.edu",
+          "role": "Cloud & MLOps Engineer"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "submittedAt": "2026-09-08",
+          "fileUrl": "https://campus-hub.storage/docs/proj-401/charter.pdf",
+          "githubBranch": "main",
+          "notes": "Approved by guide with commendation on dataset ethical compliance.",
+          "score": 15,
+          "feedback": "Clear scope and strong clinical dataset acquisition plan. Approved without changes."
+        },
+        "m2": {
+          "status": "graded",
+          "submittedAt": "2026-10-02",
+          "fileUrl": "https://campus-hub.storage/docs/proj-401/architecture.pdf",
+          "githubBranch": "feature/srs-v2",
+          "notes": "High level diagram and model pipeline inference flow included.",
+          "score": 19,
+          "feedback": "Excellent system architecture. Ensure latency under 800ms per inference."
+        },
+        "m3": {
+          "status": "submitted",
+          "submittedAt": "2026-10-28",
+          "fileUrl": "https://campus-hub.storage/docs/proj-401/midterm_eval.pdf",
+          "githubBranch": "demo-v1",
+          "notes": "Trained ResNet-50 & ViT models on EyePACs dataset; Web demo live.",
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": true,
+      "likes": 42
+    },
+    {
+      "id": "proj-402",
+      "title": "BlockCert: Tamper-Proof Academic Credential Verification System",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "Blockchain / Web3",
+      "tags": [
+        "Solidity",
+        "Ethereum",
+        "IPFS",
+        "Next.js",
+        "Cryptography"
+      ],
+      "abstract": "A zero-knowledge decentralized platform that allows universities to issue cryptographically signed, immutable degree certificates on EVM-compatible chains, enabling instant third-party employer verification without bureaucratic delays.",
+      "githubUrl": "https://github.com/campus-hub/blockcert-protocol",
+      "demoUrl": "https://blockcert.demo.campus.edu",
+      "status": "approved",
+      "overallScore": 88,
+      "mentorId": "fac-102",
+      "mentorName": "Prof. Alan Turing",
+      "teamLead": {
+        "name": "Ethan Wright",
+        "rollNo": "21CS019",
+        "email": "ethan.w@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Ethan Wright",
+          "rollNo": "21CS019",
+          "email": "ethan.w@student.campus.edu",
+          "role": "Smart Contract Dev"
+        },
+        {
+          "name": "Sophia Lin",
+          "rollNo": "21CS067",
+          "email": "sophia.l@student.campus.edu",
+          "role": "Frontend UI/UX"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "score": 14,
+          "feedback": "Solidity gas optimization needs to be prioritized."
+        },
+        "m2": {
+          "status": "graded",
+          "score": 18,
+          "feedback": "Smart contract test suite with Foundry verified."
+        },
+        "m3": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": true,
+      "likes": 38
+    },
+    {
+      "id": "proj-301",
+      "title": "EcoPulse: Campus IoT Smart Metering & Carbon Footprint Dashboard",
+      "batchId": "batch-2022-2026",
+      "year": 3,
+      "yearLabel": "3rd Year (Junior)",
+      "projectType": "Domain Specialization Mini-Project",
+      "department": "Computer Science & Engineering",
+      "domain": "IoT / CleanTech",
+      "tags": [
+        "ESP32",
+        "MQTT",
+        "Node.js",
+        "InfluxDB",
+        "Grafana",
+        "TailwindCSS"
+      ],
+      "abstract": "Deployed low-cost CT sensor nodes across 6 campus buildings to monitor real-time electrical load, HVAC consumption, and water pumping cycles. Includes an anomaly detector flagging energy waste.",
+      "githubUrl": "https://github.com/campus-hub/ecopulse-iot",
+      "demoUrl": "https://ecopulse.campus.edu",
+      "status": "approved",
+      "overallScore": 85,
+      "mentorId": "fac-103",
+      "mentorName": "Dr. Maya Patel",
+      "teamLead": {
+        "name": "Daniel Cho",
+        "rollNo": "22CS104",
+        "email": "d.cho@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Daniel Cho",
+          "rollNo": "22CS104",
+          "email": "d.cho@student.campus.edu",
+          "role": "Firmware & Hardware"
+        },
+        {
+          "name": "Aisha Begum",
+          "rollNo": "22CS012",
+          "email": "a.begum@student.campus.edu",
+          "role": "Backend & Data Pipeline"
+        },
+        {
+          "name": "Liam O'Connor",
+          "rollNo": "22CS077",
+          "email": "l.oconnor@student.campus.edu",
+          "role": "Frontend Analytics"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "score": 15,
+          "feedback": "Good hardware bill of materials."
+        },
+        "m2": {
+          "status": "graded",
+          "score": 19,
+          "feedback": "MQTT QoS levels properly tuned."
+        },
+        "m3": {
+          "status": "submitted",
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 29
+    },
+    {
+      "id": "proj-302",
+      "title": "SafeCampus: Autonomous Wi-Fi Rogue AP & Deauth Attack Shield",
+      "batchId": "batch-2022-2026",
+      "year": 3,
+      "yearLabel": "3rd Year (Junior)",
+      "projectType": "Domain Specialization Mini-Project",
+      "department": "Computer Science & Engineering",
+      "domain": "CyberSecurity",
+      "tags": [
+        "Python",
+        "Scapy",
+        "Linux",
+        "Docker",
+        "Network Security"
+      ],
+      "abstract": "A distributed network sniffing daemon detecting 802.11 evil twin access points, man-in-the-middle attacks, and deauthentication frame floods across student residence halls in real-time.",
+      "githubUrl": "https://github.com/campus-hub/safecampus-ids",
+      "demoUrl": "",
+      "status": "needs_revision",
+      "overallScore": 68,
+      "mentorId": "fac-104",
+      "mentorName": "Prof. David Kumar",
+      "teamLead": {
+        "name": "Rachel Zane",
+        "rollNo": "22CS095",
+        "email": "r.zane@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Rachel Zane",
+          "rollNo": "22CS095",
+          "email": "r.zane@student.campus.edu",
+          "role": "Lead PenTester"
+        },
+        {
+          "name": "Kevin Scott",
+          "rollNo": "22CS049",
+          "email": "k.scott@student.campus.edu",
+          "role": "Packet Analysis"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "score": 12,
+          "feedback": "Needs clear legal boundary definitions for campus network testing."
+        },
+        "m2": {
+          "status": "needs_revision",
+          "score": 11,
+          "feedback": "SRS must specify false positive rate mitigation strategies. Please revise."
+        },
+        "m3": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 17
+    },
+    {
+      "id": "proj-201",
+      "title": "CampusBite: Smart Dining Hall Surplus Redistribution & Pre-Order",
+      "batchId": "batch-2023-2027",
+      "year": 2,
+      "yearLabel": "2nd Year (Sophomore)",
+      "projectType": "Minor Hardware / Software Project",
+      "department": "Computer Science & Engineering",
+      "domain": "Web Application / Social Tech",
+      "tags": [
+        "React",
+        "Express",
+        "SQLite",
+        "TailwindCSS",
+        "Progressive Web App"
+      ],
+      "abstract": "A mobile-responsive web application bridging campus cafeteria food surplus with student dorms at discounted rates, reducing organic waste by an estimated 35% weekly.",
+      "githubUrl": "https://github.com/campus-hub/campus-bite",
+      "demoUrl": "https://campusbite.demo.campus.edu",
+      "status": "approved",
+      "overallScore": 82,
+      "mentorId": "fac-104",
+      "mentorName": "Prof. David Kumar",
+      "teamLead": {
+        "name": "Zack Martin",
+        "rollNo": "23CS014",
+        "email": "zack.m@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Zack Martin",
+          "rollNo": "23CS014",
+          "email": "zack.m@student.campus.edu",
+          "role": "Fullstack Lead"
+        },
+        {
+          "name": "Emily Watson",
+          "rollNo": "23CS083",
+          "email": "emily.w@student.campus.edu",
+          "role": "UI & DB Architecture"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "graded",
+          "score": 18,
+          "feedback": "Great initiative with clear cafeteria manager support."
+        },
+        "m2": {
+          "status": "submitted",
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": true,
+      "likes": 54
+    },
+    {
+      "id": "proj-101",
+      "title": "ClassMate: Peer-to-Peer Course Notes & Lab Kit Exchange",
+      "batchId": "batch-2024-2028",
+      "year": 1,
+      "yearLabel": "1st Year (Freshman)",
+      "projectType": "Social Innovation & Community Impact Project",
+      "department": "Common Core / Engineering Sciences",
+      "domain": "Community Impact",
+      "tags": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Firebase"
+      ],
+      "abstract": "An accessible platform for freshmen and sophomores to exchange verified lecture notes, drawing boards, and laboratory breadboard kits sustainably across academic years.",
+      "githubUrl": "https://github.com/campus-hub/classmate-exchange",
+      "demoUrl": "",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-103",
+      "mentorName": "Dr. Maya Patel",
+      "teamLead": {
+        "name": "Rohan Varma",
+        "rollNo": "24CS002",
+        "email": "rohan.v@student.campus.edu"
+      },
+      "teamMembers": [
+        {
+          "name": "Rohan Varma",
+          "rollNo": "24CS002",
+          "email": "rohan.v@student.campus.edu",
+          "role": "Frontend"
+        },
+        {
+          "name": "Tara Menon",
+          "rollNo": "24CS099",
+          "email": "tara.m@student.campus.edu",
+          "role": "Content Curator"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "submitted",
+          "score": null,
+          "feedback": null,
+          "notes": "Submitted initial problem survey from 120 freshmen."
+        },
+        "m2": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 26
+    }
+  ]
+}
