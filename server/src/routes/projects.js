@@ -28,19 +28,39 @@ router.get('/:id', async (req, res) => {
 // POST /api/projects - register a new project
 router.post('/', async (req, res) => {
   try {
-    const { title, batchId, domain, tags, abstract, githubUrl, demoUrl, mentorId, teamLead, teamMembers } = req.body;
-    if (!title || !batchId) {
+    const { 
+      title, 
+      batchId, 
+      batch,
+      batchAndYear, 
+      domain, 
+      tags, 
+      abstract, 
+      githubUrl, 
+      demoUrl, 
+      mentorId, 
+      mentorName, 
+      supervisor, 
+      teamLead, 
+      teamMembers 
+    } = req.body;
+
+    const resolvedBatch = batchId || batchAndYear || batch;
+    if (!title || !resolvedBatch) {
       return res.status(400).json({ error: 'Title and Batch are required' });
     }
     const newProject = await db.createProject({
       title,
-      batchId,
+      batchId: resolvedBatch,
+      batchAndYear: batchAndYear || resolvedBatch,
       domain,
       tags,
       abstract,
       githubUrl,
       demoUrl,
       mentorId,
+      mentorName: mentorName || supervisor,
+      supervisor: supervisor || mentorName,
       teamLead,
       teamMembers
     });

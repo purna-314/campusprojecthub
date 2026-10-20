@@ -8,7 +8,8 @@ import {
   Users, 
   GraduationCap, 
   Globe, 
-  Tag 
+  Tag,
+  Calendar
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { useAuth } from '../context/AuthContext';
@@ -17,22 +18,26 @@ import { api } from '../services/api';
 export default function NewProjectModal({ batches, faculty, onClose, onSuccess }) {
   const { user } = useAuth();
 
+  const defaultBatchAndYear = user?.batchName
+    ? `${user.batchName} (${user.yearLabel || ''})`
+    : (batches[batches.length - 1]?.name ? `${batches[batches.length - 1].name} — ${batches[batches.length - 1].yearLabel}` : '');
+
   const [formData, setFormData] = useState({
     title: '',
-    batchId: batches[batches.length - 1]?.id || '',
+    batchAndYear: defaultBatchAndYear,
     domain: 'AI / Machine Learning',
     tags: 'React, Node.js, TailwindCSS',
     abstract: '',
     githubUrl: '',
     demoUrl: '',
-    mentorId: faculty[0]?.id || '',
+    supervisor: faculty[0]?.name || '',
     teamLead: {
-      name: user.name || '',
-      rollNo: user.rollNo || '',
-      email: user.email || ''
+      name: user?.name || '',
+      rollNo: user?.rollNo || '',
+      email: user?.email || ''
     },
     teamMembers: [
-      { name: user.name || '', rollNo: user.rollNo || '', email: user.email || '', role: 'Team Lead' }
+      { name: user?.name || '', rollNo: user?.rollNo || '', email: user?.email || '', role: 'Team Lead' }
     ]
   });
 
@@ -86,15 +91,36 @@ export default function NewProjectModal({ batches, faculty, onClose, onSuccess }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.batchId) {
-      alert('Project Title and Batch are required.');
+    if (!formData.title || !formData.batchAndYear) {
+      alert('Project Title and Batch & Year are required.');
       return;
     }
 
     setIsSubmitting(true);
     try {
+      // Find matching batch if available to preserve batchId linkage
+      const matchedBatch = batches.find(b => 
+        formData.batchAndYear.toLowerCase().includes(b.id.toLowerCase()) ||
+        formData.batchAndYear.toLowerCase().includes(b.name.toLowerCase()) ||
+        b.name.toLowerCase().includes(formData.batchAndYear.toLowerCase())
+      );
+
+      // Find matching faculty if available to preserve mentorId linkage
+      const matchedFaculty = faculty.find(f => 
+        formData.supervisor && (
+          f.name.toLowerCase() === formData.supervisor.toLowerCase() ||
+          f.name.toLowerCase().includes(formData.supervisor.toLowerCase()) ||
+          formData.supervisor.toLowerCase().includes(f.name.toLowerCase())
+        )
+      );
+
       const payload = {
         ...formData,
+        batchId: matchedBatch ? matchedBatch.id : formData.batchAndYear,
+        batchAndYear: formData.batchAndYear,
+        mentorId: matchedFaculty ? matchedFaculty.id : null,
+        mentorName: formData.supervisor || (matchedFaculty ? matchedFaculty.name : 'Unassigned'),
+        supervisor: formData.supervisor,
         tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean)
       };
       await api.createProject(payload);
@@ -137,21 +163,24 @@ export default function NewProjectModal({ batches, faculty, onClose, onSuccess }
           {/* Year & Batch Selection */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block font-bold text-slate-700 mb-1.5">
-                Target Academic Batch & Year *
+              <label className="block font-bold text-slate-700 mb-1.5 flex items-center space-x-1">
+                <Calendar className="w-3.5 h-3.5 text-blue-500" />
+                <span>Target Academic Batch & Year *</span>
               </label>
-              <select
+              <input
+                type="text"
                 required
-                value={formData.batchId}
-                onChange={(e) => setFormData({ ...formData, batchId: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-500 font-medium"
-              >
+                list="batch-suggestions"
+                placeholder="e.g. Batch 2021-2025 (4th Year) or Batch 2024-2028"
+                value={formData.batchAndYear}
+                onChange={(e) => setFormData({ ...formData, batchAndYear: e.target.value })}
+                className="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 font-medium"
+              />
+              <datalist id="batch-suggestions">
                 {batches.map(b => (
-                  <option key={b.id} value={b.id}>
-                    {b.name} — {b.yearLabel} ({b.projectType})
-                  </option>
+                  <option key={b.id} value={`${b.name} — ${b.yearLabel}`} />
                 ))}
-              </select>
+              </datalist>
             </div>
 
             <div>
@@ -222,17 +251,19 @@ export default function NewProjectModal({ batches, faculty, onClose, onSuccess }
                 <GraduationCap className="w-3.5 h-3.5 text-indigo-500" />
                 <span>Preferred Faculty Guide / Supervisor</span>
               </label>
-              <select
-                value={formData.mentorId}
-                onChange={(e) => setFormData({ ...formData, mentorId: e.target.value })}
-                className="w-full text-xs p-2.5 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-500 font-medium"
-              >
+              <input
+                type="text"
+                list="faculty-suggestions"
+                placeholder="e.g. Dr. Sarah Jenkins or Prof. Alan Turing"
+                value={formData.supervisor}
+                onChange={(e) => setFormData({ ...formData, supervisor: e.target.value })}
+                className="w-full text-xs p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 font-medium"
+              />
+              <datalist id="faculty-suggestions">
                 {faculty.map(f => (
-                  <option key={f.id} value={f.id}>
-                    {f.name} ({f.department})
-                  </option>
+                  <option key={f.id} value={f.name} />
                 ))}
-              </select>
+              </datalist>
             </div>
           </div>
 

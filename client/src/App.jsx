@@ -7,6 +7,7 @@ import FacultyDashboard from './components/FacultyDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import ProjectDetailsModal from './components/ProjectDetailsModal';
 import NewProjectModal from './components/NewProjectModal';
+import AuthModal from './components/AuthModal';
 import { api } from './services/api';
 
 function MainApp() {
@@ -135,6 +136,9 @@ function MainApp() {
           }}
         />
       )}
+
+      {/* Authentication & Email Verification Modal */}
+      <AuthModal />
 
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-white py-10 text-center text-xs text-slate-500">

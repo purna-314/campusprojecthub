@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { initialBatches, initialFaculty, initialProjects } from '../seedData.js';
+import { initialBatches, initialFaculty, initialProjects, initialUsers } from '../seedData.js';
 import { BatchModel } from '../models/Batch.js';
 import { FacultyModel } from '../models/Faculty.js';
 import { ProjectModel } from '../models/Project.js';
+import { UserModel } from '../models/User.js';
 
 dotenv.config();
 
@@ -38,6 +39,12 @@ export async function connectMongoDB() {
 
 export async function seedCloudIfEmpty() {
   try {
+    const userCount = await UserModel.countDocuments();
+    if (userCount === 0) {
+      console.log('🌱 Seeding Users to MongoDB Cloud...');
+      await UserModel.insertMany(initialUsers);
+    }
+
     const batchCount = await BatchModel.countDocuments();
     if (batchCount === 0) {
       console.log('🌱 Seeding Batches to MongoDB Cloud...');
@@ -64,11 +71,14 @@ export async function seedCloudIfEmpty() {
 
 export async function resetCloudDb() {
   if (!isMongoConnected) return false;
+  await UserModel.deleteMany({});
   await BatchModel.deleteMany({});
   await FacultyModel.deleteMany({});
   await ProjectModel.deleteMany({});
+  await UserModel.insertMany(initialUsers);
   await BatchModel.insertMany(initialBatches);
   await FacultyModel.insertMany(initialFaculty);
   await ProjectModel.insertMany(initialProjects);
   return true;
 }
+

@@ -125,20 +125,24 @@ export const initialFaculty = [
 
 export const initialProjects = [
   {
-    id: "proj-401",
-    title: "NeuroScan AI: Automated Retinal Disease Detection using Fundus Imaging",
+    id: "proj-1788842552235",
+    title: "sdgasg",
     batchId: "batch-2021-2025",
     year: 4,
     yearLabel: "4th Year (Senior)",
     projectType: "Major Capstone Project",
     department: "Computer Science & Engineering",
-    domain: "AI / Healthcare",
-    tags: ["Deep Learning", "PyTorch", "FastAPI", "React", "Medical Imaging"],
-    abstract: "A clinical decision support platform leveraging deep convolutional neural networks and vision transformers to identify Diabetic Retinopathy, Glaucoma, and Macular Degeneration with 96.4% sensitivity from standard ocular fundus scans.",
-    githubUrl: "https://github.com/campus-hub/neuroscan-ai",
-    demoUrl: "https://neuroscan-ai.demo.campus.edu",
-    status: "approved", // draft, pending_review, approved, needs_revision, completed
-    overallScore: 92,
+    domain: "AI / Machine Learning",
+    tags: [
+      "React",
+      "Node.js",
+      "TailwindCSS"
+    ],
+    abstract: "adsfgdfvzx",
+    githubUrl: "https://github.com//adfkdfskj",
+    demoUrl: "https://adsffhew.sdf",
+    status: "pending_review",
+    overallScore: null,
     mentorId: "fac-101",
     mentorName: "Dr. Sarah Jenkins",
     teamLead: {
@@ -147,35 +151,38 @@ export const initialProjects = [
       email: "alex.rivera@student.campus.edu"
     },
     teamMembers: [
-      { name: "Alex Rivera", rollNo: "21CS042", email: "alex.rivera@student.campus.edu", role: "Team Lead & ML Engineer" },
-      { name: "Priya Sharma", rollNo: "21CS088", email: "priya.s@student.campus.edu", role: "Full Stack Developer" },
-      { name: "Marcus Vance", rollNo: "21CS054", email: "marcus.v@student.campus.edu", role: "Cloud & MLOps Engineer" }
+      {
+        name: "Alex Rivera",
+        rollNo: "21CS042",
+        email: "alex.rivera@student.campus.edu",
+        role: "Team Lead"
+      }
     ],
     milestoneSubmissions: {
       m1: {
-        status: "graded",
-        submittedAt: "2026-09-08",
-        fileUrl: "https://campus-hub.storage/docs/proj-401/charter.pdf",
-        githubBranch: "main",
-        notes: "Approved by guide with commendation on dataset ethical compliance.",
-        score: 15,
-        feedback: "Clear scope and strong clinical dataset acquisition plan. Approved without changes."
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
       },
       m2: {
-        status: "graded",
-        submittedAt: "2026-10-02",
-        fileUrl: "https://campus-hub.storage/docs/proj-401/architecture.pdf",
-        githubBranch: "feature/srs-v2",
-        notes: "High level diagram and model pipeline inference flow included.",
-        score: 19,
-        feedback: "Excellent system architecture. Ensure latency under 800ms per inference."
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
       },
       m3: {
-        status: "submitted",
-        submittedAt: "2026-10-28",
-        fileUrl: "https://campus-hub.storage/docs/proj-401/midterm_eval.pdf",
-        githubBranch: "demo-v1",
-        notes: "Trained ResNet-50 & ViT models on EyePACs dataset; Web demo live.",
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
         score: null,
         feedback: null
       },
@@ -189,182 +196,229 @@ export const initialProjects = [
         feedback: null
       }
     },
-    featured: true,
-    likes: 42
+    featured: false,
+    likes: 2,
+    createdAt: "2026-09-08T04:42:32.235Z"
   },
   {
-    id: "proj-402",
-    title: "BlockCert: Tamper-Proof Academic Credential Verification System",
+    id: "proj-1788842512239",
+    title: "sgga",
     batchId: "batch-2021-2025",
     year: 4,
     yearLabel: "4th Year (Senior)",
     projectType: "Major Capstone Project",
     department: "Computer Science & Engineering",
-    domain: "Blockchain / Web3",
-    tags: ["Solidity", "Ethereum", "IPFS", "Next.js", "Cryptography"],
-    abstract: "A zero-knowledge decentralized platform that allows universities to issue cryptographically signed, immutable degree certificates on EVM-compatible chains, enabling instant third-party employer verification without bureaucratic delays.",
-    githubUrl: "https://github.com/campus-hub/blockcert-protocol",
-    demoUrl: "https://blockcert.demo.campus.edu",
-    status: "approved",
-    overallScore: 88,
-    mentorId: "fac-102",
-    mentorName: "Prof. Alan Turing",
-    teamLead: {
-      name: "Ethan Wright",
-      rollNo: "21CS019",
-      email: "ethan.w@student.campus.edu"
-    },
-    teamMembers: [
-      { name: "Ethan Wright", rollNo: "21CS019", email: "ethan.w@student.campus.edu", role: "Smart Contract Dev" },
-      { name: "Sophia Lin", rollNo: "21CS067", email: "sophia.l@student.campus.edu", role: "Frontend UI/UX" }
+    domain: "AI / Machine Learning",
+    tags: [
+      "React",
+      "Node.js",
+      "TailwindCSSzgdf"
     ],
-    milestoneSubmissions: {
-      m1: { status: "graded", score: 14, feedback: "Solidity gas optimization needs to be prioritized." },
-      m2: { status: "graded", score: 18, feedback: "Smart contract test suite with Foundry verified." },
-      m3: { status: "pending", score: null, feedback: null },
-      m4: { status: "pending", score: null, feedback: null }
-    },
-    featured: true,
-    likes: 38
-  },
-  {
-    id: "proj-301",
-    title: "EcoPulse: Campus IoT Smart Metering & Carbon Footprint Dashboard",
-    batchId: "batch-2022-2026",
-    year: 3,
-    yearLabel: "3rd Year (Junior)",
-    projectType: "Domain Specialization Mini-Project",
-    department: "Computer Science & Engineering",
-    domain: "IoT / CleanTech",
-    tags: ["ESP32", "MQTT", "Node.js", "InfluxDB", "Grafana", "TailwindCSS"],
-    abstract: "Deployed low-cost CT sensor nodes across 6 campus buildings to monitor real-time electrical load, HVAC consumption, and water pumping cycles. Includes an anomaly detector flagging energy waste.",
-    githubUrl: "https://github.com/campus-hub/ecopulse-iot",
-    demoUrl: "https://ecopulse.campus.edu",
-    status: "approved",
-    overallScore: 85,
-    mentorId: "fac-103",
-    mentorName: "Dr. Maya Patel",
-    teamLead: {
-      name: "Daniel Cho",
-      rollNo: "22CS104",
-      email: "d.cho@student.campus.edu"
-    },
-    teamMembers: [
-      { name: "Daniel Cho", rollNo: "22CS104", email: "d.cho@student.campus.edu", role: "Firmware & Hardware" },
-      { name: "Aisha Begum", rollNo: "22CS012", email: "a.begum@student.campus.edu", role: "Backend & Data Pipeline" },
-      { name: "Liam O'Connor", rollNo: "22CS077", email: "l.oconnor@student.campus.edu", role: "Frontend Analytics" }
-    ],
-    milestoneSubmissions: {
-      m1: { status: "graded", score: 15, feedback: "Good hardware bill of materials." },
-      m2: { status: "graded", score: 19, feedback: "MQTT QoS levels properly tuned." },
-      m3: { status: "submitted", score: null, feedback: null },
-      m4: { status: "pending", score: null, feedback: null }
-    },
-    featured: false,
-    likes: 29
-  },
-  {
-    id: "proj-302",
-    title: "SafeCampus: Autonomous Wi-Fi Rogue AP & Deauth Attack Shield",
-    batchId: "batch-2022-2026",
-    year: 3,
-    yearLabel: "3rd Year (Junior)",
-    projectType: "Domain Specialization Mini-Project",
-    department: "Computer Science & Engineering",
-    domain: "CyberSecurity",
-    tags: ["Python", "Scapy", "Linux", "Docker", "Network Security"],
-    abstract: "A distributed network sniffing daemon detecting 802.11 evil twin access points, man-in-the-middle attacks, and deauthentication frame floods across student residence halls in real-time.",
-    githubUrl: "https://github.com/campus-hub/safecampus-ids",
+    abstract: "sdfgsdfb",
+    githubUrl: "https:/github/adsfsd",
     demoUrl: "",
-    status: "needs_revision",
-    overallScore: 68,
-    mentorId: "fac-104",
-    mentorName: "Prof. David Kumar",
+    status: "pending_review",
+    overallScore: null,
+    mentorId: "fac-101",
+    mentorName: "Dr. Sarah Jenkins",
     teamLead: {
-      name: "Rachel Zane",
-      rollNo: "22CS095",
-      email: "r.zane@student.campus.edu"
+      name: "Alex Rivera",
+      rollNo: "21CS042",
+      email: "alex.rivera@student.campus.edu"
     },
     teamMembers: [
-      { name: "Rachel Zane", rollNo: "22CS095", email: "r.zane@student.campus.edu", role: "Lead PenTester" },
-      { name: "Kevin Scott", rollNo: "22CS049", email: "k.scott@student.campus.edu", role: "Packet Analysis" }
+      {
+        name: "Alex Rivera",
+        rollNo: "21CS042",
+        email: "alex.rivera@student.campus.edu",
+        role: "Team Lead"
+      }
     ],
     milestoneSubmissions: {
-      m1: { status: "graded", score: 12, feedback: "Needs clear legal boundary definitions for campus network testing." },
-      m2: { status: "needs_revision", score: 11, feedback: "SRS must specify false positive rate mitigation strategies. Please revise." },
-      m3: { status: "pending", score: null, feedback: null },
-      m4: { status: "pending", score: null, feedback: null }
+      m1: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      },
+      m2: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      },
+      m3: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      },
+      m4: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      }
     },
     featured: false,
-    likes: 17
+    likes: 0,
+    createdAt: "2026-09-08T04:41:52.239Z"
   },
   {
-    id: "proj-201",
-    title: "CampusBite: Smart Dining Hall Surplus Redistribution & Pre-Order",
+    id: "proj-1788842166249",
+    title: "Automated Solar Tracker for Campus Greenhouses",
     batchId: "batch-2023-2027",
     year: 2,
     yearLabel: "2nd Year (Sophomore)",
     projectType: "Minor Hardware / Software Project",
     department: "Computer Science & Engineering",
-    domain: "Web Application / Social Tech",
-    tags: ["React", "Express", "SQLite", "TailwindCSS", "Progressive Web App"],
-    abstract: "A mobile-responsive web application bridging campus cafeteria food surplus with student dorms at discounted rates, reducing organic waste by an estimated 35% weekly.",
-    githubUrl: "https://github.com/campus-hub/campus-bite",
-    demoUrl: "https://campusbite.demo.campus.edu",
-    status: "approved",
-    overallScore: 82,
-    mentorId: "fac-104",
-    mentorName: "Prof. David Kumar",
-    teamLead: {
-      name: "Zack Martin",
-      rollNo: "23CS014",
-      email: "zack.m@student.campus.edu"
-    },
-    teamMembers: [
-      { name: "Zack Martin", rollNo: "23CS014", email: "zack.m@student.campus.edu", role: "Fullstack Lead" },
-      { name: "Emily Watson", rollNo: "23CS083", email: "emily.w@student.campus.edu", role: "UI & DB Architecture" }
+    domain: "IoT / CleanTech",
+    tags: [
+      "Arduino",
+      "C++",
+      "LDR",
+      "Solar"
     ],
-    milestoneSubmissions: {
-      m1: { status: "graded", score: 18, feedback: "Great initiative with clear cafeteria manager support." },
-      m2: { status: "submitted", score: null, feedback: null },
-      m3: { status: "pending", score: null, feedback: null },
-      m4: { status: "pending", score: null, feedback: null }
-    },
-    featured: true,
-    likes: 54
-  },
-  {
-    id: "proj-101",
-    title: "ClassMate: Peer-to-Peer Course Notes & Lab Kit Exchange",
-    batchId: "batch-2024-2028",
-    year: 1,
-    yearLabel: "1st Year (Freshman)",
-    projectType: "Social Innovation & Community Impact Project",
-    department: "Common Core / Engineering Sciences",
-    domain: "Community Impact",
-    tags: ["HTML5", "CSS3", "JavaScript", "Firebase"],
-    abstract: "An accessible platform for freshmen and sophomores to exchange verified lecture notes, drawing boards, and laboratory breadboard kits sustainably across academic years.",
-    githubUrl: "https://github.com/campus-hub/classmate-exchange",
+    abstract: "Dual-axis solar tracking system for optimizing photovoltaic efficiency.",
+    githubUrl: "https://github.com/campus/solar-tracker",
     demoUrl: "",
     status: "pending_review",
     overallScore: null,
     mentorId: "fac-103",
     mentorName: "Dr. Maya Patel",
     teamLead: {
-      name: "Rohan Varma",
-      rollNo: "24CS002",
-      email: "rohan.v@student.campus.edu"
+      name: "Kavita Roy",
+      rollNo: "23EC011",
+      email: "kavita@student.campus.edu"
     },
     teamMembers: [
-      { name: "Rohan Varma", rollNo: "24CS002", email: "rohan.v@student.campus.edu", role: "Frontend" },
-      { name: "Tara Menon", rollNo: "24CS099", email: "tara.m@student.campus.edu", role: "Content Curator" }
+      {
+        name: "Kavita Roy",
+        rollNo: "23EC011",
+        email: "kavita@student.campus.edu",
+        role: "Lead"
+      },
+      {
+        name: "Sameer Sen",
+        rollNo: "23EC044",
+        email: "sameer@student.campus.edu",
+        role: "Hardware"
+      }
     ],
     milestoneSubmissions: {
-      m1: { status: "submitted", score: null, feedback: null, notes: "Submitted initial problem survey from 120 freshmen." },
-      m2: { status: "pending", score: null, feedback: null },
-      m3: { status: "pending", score: null, feedback: null }
+      m1: {
+        status: "graded",
+        submittedAt: "2026-09-08",
+        fileUrl: "https://campus.storage/docs/solar_synopsis.pdf",
+        githubBranch: "main",
+        notes: "Initial circuit diagrams and bill of materials completed.",
+        score: 18,
+        feedback: "Feasible sensor configuration. Approved to procure LDR components.",
+        gradedAt: "2026-09-08"
+      },
+      m2: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      },
+      m3: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      },
+      m4: {
+        status: "pending",
+        submittedAt: null,
+        fileUrl: null,
+        githubBranch: null,
+        notes: null,
+        score: null,
+        feedback: null
+      }
     },
     featured: false,
-    likes: 12
+    likes: 1,
+    createdAt: "2026-09-08T04:36:06.249Z"
   }
 ];
+
+export const initialUsers = [
+  {
+    id: "user-student-1",
+    name: "Alex Rivera",
+    email: "alex.rivera@student.campus.edu",
+    password: "$2b$10$n2tb8.90Zy.FWrpq1fZwJeY5xIm8TYe0SvGADMLu3nVEHKyNwpL3C", // Password123!
+    role: "student",
+    rollNo: "21CS042",
+    year: 4,
+    yearLabel: "4th Year (Senior)",
+    batchId: "batch-2021-2025",
+    batchName: "Batch 2021-2025",
+    department: "Computer Science & Engineering",
+    designation: "Undergraduate Senior Researcher",
+    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
+    isVerified: true,
+    verificationCode: null,
+    verificationExpires: null,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "fac-101",
+    name: "Dr. Sarah Jenkins",
+    email: "s.jenkins@campus.edu",
+    password: "$2b$10$n2tb8.90Zy.FWrpq1fZwJeY5xIm8TYe0SvGADMLu3nVEHKyNwpL3C", // Password123!
+    role: "faculty",
+    rollNo: "",
+    year: null,
+    yearLabel: "",
+    batchId: "",
+    batchName: "",
+    department: "Computer Science & Engineering",
+    designation: "Associate Professor & Project Guide",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+    isVerified: true,
+    verificationCode: null,
+    verificationExpires: null,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: "admin-1",
+    name: "Prof. Alan Turing",
+    email: "a.turing@campus.edu",
+    password: "$2b$10$n2tb8.90Zy.FWrpq1fZwJeY5xIm8TYe0SvGADMLu3nVEHKyNwpL3C", // Password123!
+    role: "admin",
+    rollNo: "",
+    year: null,
+    yearLabel: "",
+    batchId: "",
+    batchName: "",
+    department: "Computer Science & Engineering",
+    designation: "Head of Department & Academic Coordinator",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    isVerified: true,
+    verificationCode: null,
+    verificationExpires: null,
+    createdAt: new Date().toISOString()
+  }
+];
+

@@ -33,11 +33,14 @@ export default function StudentDashboard({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Find user's project (matching team lead or member email/rollNo)
-  const myProject = projects.find(p => 
-    p.teamLead?.rollNo === user?.rollNo ||
-    p.teamMembers?.some(m => m.rollNo === user?.rollNo)
-  ) || projects[0]; // fallback to first project for demonstration
+  // Find user's project (matching team lead or member email/rollNo) - ONLY uploaded student projects
+  const myProjects = projects.filter(p => 
+    (user?.rollNo && (p.teamLead?.rollNo === user?.rollNo || p.teamMembers?.some(m => m.rollNo === user?.rollNo))) ||
+    (user?.email && (p.teamLead?.email?.toLowerCase() === user?.email?.toLowerCase() || p.teamMembers?.some(m => m.email?.toLowerCase() === user?.email?.toLowerCase())))
+  );
+
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const myProject = (selectedProjectId ? myProjects.find(p => p.id === selectedProjectId) : myProjects[0]) || null;
 
   const currentBatch = batches.find(b => b.id === myProject?.batchId) || batches[batches.length - 1];
   const milestones = currentBatch?.milestones || [];
@@ -110,6 +113,27 @@ export default function StudentDashboard({
         <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center space-x-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           <span>{successMessage}</span>
+        </div>
+      )}
+
+      {/* Multi-Project Switcher if student has uploaded multiple projects */}
+      {myProjects.length > 1 && (
+        <div className="bg-white p-3 rounded-2xl border border-slate-200 flex items-center space-x-2 overflow-x-auto shadow-sm">
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2">Your Uploaded Projects:</span>
+          {myProjects.map(p => (
+            <button
+              key={p.id}
+              onClick={() => setSelectedProjectId(p.id)}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1.5 ${
+                myProject?.id === p.id
+                  ? 'bg-blue-600 text-white shadow-sm'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              <FolderKanban className="w-3.5 h-3.5" />
+              <span>{p.title}</span>
+            </button>
+          ))}
         </div>
       )}
 

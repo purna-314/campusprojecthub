@@ -7,6 +7,7 @@ import projectRoutes from './routes/projects.js';
 import batchRoutes from './routes/batches.js';
 import facultyRoutes from './routes/faculty.js';
 import analyticsRoutes from './routes/analytics.js';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 // API Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/batches', batchRoutes);
 app.use('/api/faculty', facultyRoutes);

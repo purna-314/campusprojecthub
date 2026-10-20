@@ -35,7 +35,10 @@ export default function FacultyDashboard({
   const [isSaving, setIsSaving] = useState(false);
 
   // Projects guided by this faculty
-  const myProjects = projects.filter(p => p.mentorId === user.id || p.mentorName?.includes(user.name.split(' ')[1] || ''));
+  const myProjects = projects.filter(p => 
+    p.mentorId === user?.id || 
+    (user?.name && p.mentorName?.includes(user.name.split(' ')[1] || user.name))
+  );
 
   // Collect pending submissions across all my projects
   const pendingSubmissions = [];
