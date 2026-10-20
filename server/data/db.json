@@ -691,6 +691,29 @@
       "resetPasswordExpires": null,
       "createdAt": "2026-10-20T04:42:52.177Z",
       "updatedAt": "2026-10-20T04:47:45.439Z"
+    },
+    {
+      "id": "user-1792476382313-vt12e",
+      "name": "ghjgkjgh",
+      "email": "jgfhgfhg@gmail.com",
+      "password": "$2b$10$849Dm504/GCfAXi2bA..ueH/Xtz42jZJO6KbhUSX8IYFUvGQPEDYC",
+      "role": "student",
+      "rollNo": "25k69l3578",
+      "year": 1,
+      "yearLabel": "1st Year",
+      "batchId": "",
+      "batchName": "",
+      "department": "Computer Science & Engineering",
+      "designation": "1st Year Student",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=ghjgkjgh&backgroundColor=2563eb,4f46e5,0891b2",
+      "isVerified": true,
+      "verificationCode": null,
+      "verificationToken": null,
+      "verificationExpires": null,
+      "resetPasswordCode": null,
+      "resetPasswordExpires": null,
+      "createdAt": "2026-10-20T06:06:22.313Z",
+      "updatedAt": "2026-10-20T06:06:29.725Z"
     }
   ]
 }
