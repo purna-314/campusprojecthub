@@ -35,6 +35,39 @@ function authHeaders(extraHeaders = {}) {
   return headers;
 }
 
+async function parseResponse(res, defaultErrorMsg = 'Request failed') {
+  const contentType = res.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) {
+    const json = await res.json();
+    if (!res.ok) {
+      const err = new Error(json.error || defaultErrorMsg);
+      if (json.unverified !== undefined) err.unverified = json.unverified;
+      if (json.email) err.email = json.email;
+      if (json.devCode) err.devCode = json.devCode;
+      if (json.previewUrl) err.previewUrl = json.previewUrl;
+      throw err;
+    }
+    return json;
+  }
+
+  const text = await res.text();
+  if (!res.ok) {
+    if (res.status === 404) {
+      throw new Error('API endpoint not found (HTTP 404). Please ensure VITE_API_URL is set in Vercel to your deployed Render URL and redeployed.');
+    }
+    if (res.status === 502 || res.status === 503 || res.status === 504) {
+      throw new Error(`Backend server unavailable (HTTP ${res.status}). Your Render free instance is likely waking up — please retry in 30 seconds.`);
+    }
+    throw new Error(text.slice(0, 100) || defaultErrorMsg);
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (_e) {
+    return text;
+  }
+}
+
 export const api = {
   // --- Authentication ---
   auth: {
@@ -44,9 +77,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Registration failed');
-      return json;
+      return parseResponse(res, 'Registration failed');
     },
 
     async verifyEmail({ email, code, token }) {
@@ -55,8 +86,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code, token }),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Verification failed');
+      const json = await parseResponse(res, 'Verification failed');
       if (json.token) setAuthToken(json.token);
       return json;
     },
@@ -67,9 +97,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to resend code');
-      return json;
+      return parseResponse(res, 'Failed to resend code');
     },
 
     async login({ email, password }) {
@@ -78,15 +106,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      const json = await res.json();
-      if (!res.ok) {
-        const error = new Error(json.error || 'Failed to sign in');
-        error.unverified = json.unverified;
-        error.email = json.email;
-        error.devCode = json.devCode;
-        error.previewUrl = json.previewUrl;
-        throw error;
-      }
+      const json = await parseResponse(res, 'Failed to sign in');
       if (json.token) setAuthToken(json.token);
       return json;
     },
@@ -101,9 +121,8 @@ export const api = {
         setAuthToken(null);
         return null;
       }
-      if (!res.ok) throw new Error('Failed to load user profile');
-      const data = await res.json();
-      return data.user;
+      const data = await parseResponse(res, 'Failed to load user profile');
+      return data?.user || null;
     },
 
     async forgotPassword(email) {
@@ -112,9 +131,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to request password reset');
-      return json;
+      return parseResponse(res, 'Failed to request password reset');
     },
 
     async resetPassword({ email, code, newPassword }) {
@@ -123,9 +140,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, code, newPassword }),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Failed to reset password');
-      return json;
+      return parseResponse(res, 'Failed to reset password');
     },
 
     logout() {
@@ -142,14 +157,12 @@ export const api = {
       }
     });
     const res = await fetch(`${API_BASE}/projects?${query.toString()}`);
-    if (!res.ok) throw new Error('Failed to fetch projects');
-    return res.json();
+    return parseResponse(res, 'Failed to fetch projects');
   },
 
   async getProjectById(id) {
     const res = await fetch(`${API_BASE}/projects/${id}`);
-    if (!res.ok) throw new Error('Failed to fetch project');
-    return res.json();
+    return parseResponse(res, 'Failed to fetch project');
   },
 
   async createProject(data) {
@@ -158,11 +171,7 @@ export const api = {
       headers: authHeaders(),
       body: JSON.stringify(data),
     });
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error || 'Failed to create project');
-    }
-    return res.json();
+    return parseResponse(res, 'Failed to create project');
   },
 
   async updateProject(id, data) {
@@ -171,8 +180,7 @@ export const api = {
       headers: authHeaders(),
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Failed to update project');
-    return res.json();
+    return parseResponse(res, 'Failed to update project');
   },
 
   async submitMilestone(projectId, milestoneId, data) {
@@ -181,8 +189,7 @@ export const api = {
       headers: authHeaders(),
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Failed to submit milestone');
-    return res.json();
+    return parseResponse(res, 'Failed to submit milestone');
   },
 
   async gradeMilestone(projectId, milestoneId, data) {
@@ -191,8 +198,7 @@ export const api = {
       headers: authHeaders(),
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Failed to grade milestone');
-    return res.json();
+    return parseResponse(res, 'Failed to grade milestone');
   },
 
   async likeProject(id) {
@@ -200,15 +206,13 @@ export const api = {
       method: 'POST',
       headers: authHeaders(),
     });
-    if (!res.ok) throw new Error('Failed to like project');
-    return res.json();
+    return parseResponse(res, 'Failed to like project');
   },
 
   // --- Batches ---
   async getBatches() {
     const res = await fetch(`${API_BASE}/batches`);
-    if (!res.ok) throw new Error('Failed to fetch batches');
-    return res.json();
+    return parseResponse(res, 'Failed to fetch batches');
   },
 
   async createBatch(data) {
@@ -217,22 +221,19 @@ export const api = {
       headers: authHeaders(),
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Failed to create batch');
-    return res.json();
+    return parseResponse(res, 'Failed to create batch');
   },
 
   // --- Faculty ---
   async getFaculty() {
     const res = await fetch(`${API_BASE}/faculty`);
-    if (!res.ok) throw new Error('Failed to fetch faculty');
-    return res.json();
+    return parseResponse(res, 'Failed to fetch faculty');
   },
 
   // --- Analytics ---
   async getAnalytics() {
     const res = await fetch(`${API_BASE}/analytics/summary`);
-    if (!res.ok) throw new Error('Failed to fetch analytics');
-    return res.json();
+    return parseResponse(res, 'Failed to fetch analytics');
   },
 
   async resetData() {
@@ -240,7 +241,6 @@ export const api = {
       method: 'POST',
       headers: authHeaders(),
     });
-    if (!res.ok) throw new Error('Failed to reset data');
-    return res.json();
+    return parseResponse(res, 'Failed to reset data');
   }
 };
