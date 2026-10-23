@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { connectMongoDB, isMongoConnected } from './config/db.js';
+import { connectSupabase, isSupabaseConnected } from './config/supabase.js';
 import projectRoutes from './routes/projects.js';
 import batchRoutes from './routes/batches.js';
 import facultyRoutes from './routes/faculty.js';
@@ -63,10 +64,14 @@ app.use('/api/analytics', analyticsRoutes);
 
 // --- Health check ---
 app.get('/api/health', (req, res) => {
+  let dbStatus = 'Local Persistent Storage';
+  if (isSupabaseConnected) dbStatus = 'Supabase Cloud (PostgreSQL)';
+  else if (isMongoConnected) dbStatus = 'MongoDB Cloud (Atlas)';
+
   res.json({
     status: 'ok',
     system: 'Campus Project Hub API',
-    database: isMongoConnected ? 'MongoDB Cloud (Atlas)' : 'Local Persistent Storage',
+    database: dbStatus,
     timestamp: new Date().toISOString()
   });
 });
@@ -82,8 +87,13 @@ app.use((err, req, res, _next) => {
 
 async function startServer() {
   try {
-    // Connect to MongoDB Atlas (falls back gracefully to local JSON storage)
-    await connectMongoDB();
+    // 1. Attempt Supabase connection first if SUPABASE_URL is provided
+    const supabaseOk = await connectSupabase();
+
+    // 2. If Supabase is not connected, attempt MongoDB Atlas (falls back to local JSON)
+    if (!supabaseOk) {
+      await connectMongoDB();
+    }
 
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`\x1b[32m✔ Campus Project Hub Server running on port ${PORT} [${NODE_ENV}]\x1b[0m`);

@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { initialBatches, initialFaculty, initialProjects, initialUsers } from './seedData.js';
 import { isMongoConnected, resetCloudDb } from './config/db.js';
+import { supabase, isSupabaseConnected, resetSupabaseDb } from './config/supabase.js';
 import { BatchModel } from './models/Batch.js';
 import { FacultyModel } from './models/Faculty.js';
 import { ProjectModel } from './models/Project.js';
@@ -75,6 +76,9 @@ class Database {
   }
 
   async reset() {
+    if (isSupabaseConnected) {
+      await resetSupabaseDb();
+    }
     if (isMongoConnected) {
       await resetCloudDb();
     }
@@ -84,6 +88,10 @@ class Database {
 
   // --- Users & Auth ---
   async getUserById(id) {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('users').select('*').eq('id', id).maybeSingle();
+      return data;
+    }
     if (isMongoConnected) {
       return await UserModel.findOne({ id }).lean();
     }
@@ -93,6 +101,10 @@ class Database {
   async getUserByEmail(email) {
     if (!email) return null;
     const normalized = email.toLowerCase().trim();
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('users').select('*').ilike('email', normalized).maybeSingle();
+      return data;
+    }
     if (isMongoConnected) {
       return await UserModel.findOne({ email: normalized }).lean();
     }
@@ -123,6 +135,12 @@ class Database {
       createdAt: new Date().toISOString()
     };
 
+    if (isSupabaseConnected) {
+      const { data, error } = await supabase.from('users').insert(newUser).select().single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+
     if (isMongoConnected) {
       const created = await UserModel.create(newUser);
       return created.toObject();
@@ -135,6 +153,12 @@ class Database {
   }
 
   async updateUser(id, updates) {
+    if (isSupabaseConnected) {
+      const { data, error } = await supabase.from('users').update({ ...updates, updatedAt: new Date().toISOString() }).eq('id', id).select().single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+
     if (isMongoConnected) {
       const updated = await UserModel.findOneAndUpdate(
         { id },
@@ -158,15 +182,22 @@ class Database {
   }
 
   async getUsers() {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('users').select('*');
+      return data || [];
+    }
     if (isMongoConnected) {
       return await UserModel.find({}).lean();
     }
     return this.data.users || [];
   }
 
-
   // --- Batches & Years ---
   async getBatches() {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('batches').select('*').order('year', { ascending: true });
+      return data || [];
+    }
     if (isMongoConnected) {
       return await BatchModel.find({}).lean();
     }
@@ -174,6 +205,10 @@ class Database {
   }
 
   async getBatchById(id) {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('batches').select('*').eq('id', id).maybeSingle();
+      return data;
+    }
     if (isMongoConnected) {
       return await BatchModel.findOne({ id }).lean();
     }
@@ -187,6 +222,12 @@ class Database {
       status: 'active'
     };
 
+    if (isSupabaseConnected) {
+      const { data, error } = await supabase.from('batches').insert(newBatch).select().single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+
     if (isMongoConnected) {
       const created = await BatchModel.create(newBatch);
       return created.toObject();
@@ -199,6 +240,10 @@ class Database {
 
   // --- Faculty ---
   async getFaculty() {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('faculty').select('*');
+      return data || [];
+    }
     if (isMongoConnected) {
       return await FacultyModel.find({}).lean();
     }
@@ -206,6 +251,10 @@ class Database {
   }
 
   async getFacultyById(id) {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('faculty').select('*').eq('id', id).maybeSingle();
+      return data;
+    }
     if (isMongoConnected) {
       return await FacultyModel.findOne({ id }).lean();
     }
@@ -214,6 +263,35 @@ class Database {
 
   // --- Projects ---
   async getProjects(filters = {}) {
+    if (isSupabaseConnected) {
+      let q = supabase.from('projects').select('*');
+      if (filters.year) q = q.eq('year', Number(filters.year));
+      if (filters.batchId) q = q.eq('batchId', filters.batchId);
+      if (filters.status && filters.status !== 'all') q = q.eq('status', filters.status);
+      if (filters.mentorId) q = q.eq('mentorId', filters.mentorId);
+      if (filters.featured) q = q.eq('featured', true);
+      const { data, error } = await q.order('createdAt', { ascending: false });
+      if (error) {
+        console.error('Supabase getProjects error:', error.message);
+        return [];
+      }
+      let list = data || [];
+      if (filters.domain && filters.domain !== 'all') {
+        list = list.filter(p => p.domain?.toLowerCase().includes(filters.domain.toLowerCase()));
+      }
+      if (filters.search) {
+        const s = filters.search.toLowerCase();
+        list = list.filter(p =>
+          p.title?.toLowerCase().includes(s) ||
+          p.abstract?.toLowerCase().includes(s) ||
+          p.tags?.some(t => t.toLowerCase().includes(s)) ||
+          p.teamLead?.name?.toLowerCase().includes(s) ||
+          p.mentorName?.toLowerCase().includes(s)
+        );
+      }
+      return list;
+    }
+
     if (isMongoConnected) {
       const query = {};
       if (filters.year) query.year = Number(filters.year);
@@ -272,6 +350,10 @@ class Database {
   }
 
   async getProjectById(id) {
+    if (isSupabaseConnected) {
+      const { data } = await supabase.from('projects').select('*').eq('id', id).maybeSingle();
+      return data;
+    }
     if (isMongoConnected) {
       return await ProjectModel.findOne({ id }).lean();
     }
@@ -395,6 +477,12 @@ class Database {
       createdAt: new Date().toISOString()
     };
 
+    if (isSupabaseConnected) {
+      const { data, error } = await supabase.from('projects').insert(newProject).select().single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+
     if (isMongoConnected) {
       const created = await ProjectModel.create(newProject);
       return created.toObject();
@@ -406,6 +494,12 @@ class Database {
   }
 
   async updateProject(id, updates) {
+    if (isSupabaseConnected) {
+      const { data, error } = await supabase.from('projects').update({ ...updates }).eq('id', id).select().single();
+      if (error) throw new Error(error.message);
+      return data;
+    }
+
     if (isMongoConnected) {
       const updated = await ProjectModel.findOneAndUpdate(
         { id },
@@ -441,6 +535,14 @@ class Database {
       notes: submission.notes || '',
     };
 
+    if (isSupabaseConnected) {
+      const updatedSubmissions = {
+        ...(project.milestoneSubmissions || {}),
+        [milestoneId]: milestoneData
+      };
+      return await this.updateProject(projectId, { milestoneSubmissions: updatedSubmissions });
+    }
+
     if (isMongoConnected) {
       const updated = await ProjectModel.findOneAndUpdate(
         { id: projectId },
@@ -472,6 +574,33 @@ class Database {
     };
 
     const batch = await this.getBatchById(project.batchId);
+
+    if (isSupabaseConnected) {
+      const updatedSubmissions = {
+        ...(project.milestoneSubmissions || {}),
+        [milestoneId]: {
+          ...(project.milestoneSubmissions?.[milestoneId] || {}),
+          ...milestoneData
+        }
+      };
+      const projectUpdates = { milestoneSubmissions: updatedSubmissions };
+      if (batch && batch.milestones) {
+        let totalScore = 0;
+        let gradedCount = 0;
+        batch.milestones.forEach(m => {
+          const sub = updatedSubmissions[m.id];
+          if (sub && typeof sub.score === 'number') {
+            totalScore += sub.score;
+            gradedCount++;
+          }
+        });
+        if (gradedCount === batch.milestones.length) {
+          projectUpdates.overallScore = Math.round(totalScore);
+          projectUpdates.status = 'completed';
+        }
+      }
+      return await this.updateProject(projectId, projectUpdates);
+    }
 
     if (isMongoConnected) {
       const doc = await ProjectModel.findOne({ id: projectId });
@@ -530,6 +659,14 @@ class Database {
   }
 
   async likeProject(id) {
+    if (isSupabaseConnected) {
+      const project = await this.getProjectById(id);
+      if (project) {
+        return await this.updateProject(id, { likes: (project.likes || 0) + 1 });
+      }
+      return null;
+    }
+
     if (isMongoConnected) {
       const updated = await ProjectModel.findOneAndUpdate(
         { id },
@@ -581,8 +718,11 @@ class Database {
     });
 
     return {
-      storageEngine: isMongoConnected ? 'MongoDB Cloud (Atlas)' : 'Local File JSON Store',
+      storageEngine: isSupabaseConnected
+        ? 'Supabase Cloud (PostgreSQL)'
+        : (isMongoConnected ? 'MongoDB Cloud (Atlas)' : 'Local File JSON Store'),
       isMongoConnected,
+      isSupabaseConnected,
       totalProjects,
       approvedProjects,
       pendingReviews,

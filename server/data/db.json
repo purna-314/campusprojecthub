@@ -230,6 +230,158 @@
   ],
   "projects": [
     {
+      "id": "proj-1792766621441",
+      "title": "nothing",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "AI / Machine Learning",
+      "tags": [
+        "React",
+        "Node.js",
+        "TailwindCSS"
+      ],
+      "abstract": "anything",
+      "githubUrl": "https://github/vercel.com",
+      "demoUrl": "https://jdl.com",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-101",
+      "mentorName": "Dr. Sarah Jenkins",
+      "teamLead": {
+        "name": "kittu",
+        "rollNo": "25B95A6131",
+        "email": "kiittu@gmail.com"
+      },
+      "teamMembers": [
+        {
+          "name": "kittu",
+          "rollNo": "25B95A6131",
+          "email": "kiittu@gmail.com",
+          "role": "Team Lead"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m2": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 0,
+      "createdAt": "2026-10-23T14:43:41.441Z"
+    },
+    {
+      "id": "proj-1792766502726",
+      "title": "nothng",
+      "batchId": "batch-2021-2025",
+      "year": 4,
+      "yearLabel": "4th Year (Senior)",
+      "projectType": "Major Capstone Project",
+      "department": "Computer Science & Engineering",
+      "domain": "AI / Machine Learning",
+      "tags": [
+        "React",
+        "Node.js",
+        "TailwindCSS"
+      ],
+      "abstract": "nothing",
+      "githubUrl": "https:github/any.com",
+      "demoUrl": "https://vercl.com",
+      "status": "pending_review",
+      "overallScore": null,
+      "mentorId": "fac-101",
+      "mentorName": "Dr. Sarah Jenkins",
+      "teamLead": {
+        "name": "kittu",
+        "rollNo": "25B95A6131",
+        "email": "kiittu@gmail.com"
+      },
+      "teamMembers": [
+        {
+          "name": "kittu",
+          "rollNo": "25B95A6131",
+          "email": "kiittu@gmail.com",
+          "role": "Team Lead"
+        }
+      ],
+      "milestoneSubmissions": {
+        "m1": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m2": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m3": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        },
+        "m4": {
+          "status": "pending",
+          "submittedAt": null,
+          "fileUrl": null,
+          "githubBranch": null,
+          "notes": null,
+          "score": null,
+          "feedback": null
+        }
+      },
+      "featured": false,
+      "likes": 0,
+      "createdAt": "2026-10-23T14:41:42.726Z"
+    },
+    {
       "id": "proj-1788842552235",
       "title": "sdgasg",
       "batchId": "batch-2021-2025",
@@ -523,6 +675,29 @@
       "verificationCode": null,
       "verificationExpires": null,
       "createdAt": "2026-10-23T12:48:25.497Z"
+    },
+    {
+      "id": "user-1792765868828-nio9o",
+      "name": "kittu",
+      "email": "kiittu@gmail.com",
+      "password": "$2b$10$O17ZINI5MNJoMMgb/TVpoeNbXy/3cjZt.rx46OsudYFG0Gbvbx/TO",
+      "role": "student",
+      "rollNo": "25B95A6131",
+      "year": 1,
+      "yearLabel": "1st Year",
+      "batchId": "",
+      "batchName": "",
+      "department": "Computer Science & Engineering",
+      "designation": "1st Year Student",
+      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=kittu%20&backgroundColor=2563eb,4f46e5,0891b2",
+      "isVerified": true,
+      "verificationCode": null,
+      "verificationToken": null,
+      "verificationExpires": null,
+      "resetPasswordCode": null,
+      "resetPasswordExpires": null,
+      "createdAt": "2026-10-23T14:31:08.828Z",
+      "updatedAt": "2026-10-23T14:31:19.096Z"
     }
   ]
 }
