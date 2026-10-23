@@ -12,6 +12,18 @@ import { UserModel } from './models/User.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_FILE = path.join(__dirname, '../data/db.json');
 
+// High-speed in-memory cache for frequently read catalog items
+const memoryCache = {
+  batches: null,
+  batchesTime: 0,
+  faculty: null,
+  facultyTime: 0,
+  showcaseProjects: null,
+  showcaseTime: 0
+};
+const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const SHOWCASE_TTL_MS = 30 * 1000;   // 30 seconds
+
 class Database {
   constructor() {
     this.data = {
@@ -194,28 +206,32 @@ class Database {
 
   // --- Batches & Years ---
   async getBatches() {
+    if (memoryCache.batches && (Date.now() - memoryCache.batchesTime < CACHE_TTL_MS)) {
+      return memoryCache.batches;
+    }
+
+    let result = [];
     if (isSupabaseConnected) {
       const { data } = await supabase.from('batches').select('*').order('year', { ascending: true });
-      return data || [];
+      result = data || [];
+    } else if (isMongoConnected) {
+      result = await BatchModel.find({}).lean();
+    } else {
+      result = this.data.batches;
     }
-    if (isMongoConnected) {
-      return await BatchModel.find({}).lean();
-    }
-    return this.data.batches;
+
+    memoryCache.batches = result;
+    memoryCache.batchesTime = Date.now();
+    return result;
   }
 
   async getBatchById(id) {
-    if (isSupabaseConnected) {
-      const { data } = await supabase.from('batches').select('*').eq('id', id).maybeSingle();
-      return data;
-    }
-    if (isMongoConnected) {
-      return await BatchModel.findOne({ id }).lean();
-    }
-    return this.data.batches.find(b => b.id === id);
+    const batches = await this.getBatches();
+    return batches.find(b => b.id === id);
   }
 
   async createBatch(batchData) {
+    memoryCache.batches = null;
     const newBatch = {
       id: `batch-${Date.now()}`,
       ...batchData,
@@ -240,29 +256,36 @@ class Database {
 
   // --- Faculty ---
   async getFaculty() {
+    if (memoryCache.faculty && (Date.now() - memoryCache.facultyTime < CACHE_TTL_MS)) {
+      return memoryCache.faculty;
+    }
+
+    let result = [];
     if (isSupabaseConnected) {
       const { data } = await supabase.from('faculty').select('*');
-      return data || [];
+      result = data || [];
+    } else if (isMongoConnected) {
+      result = await FacultyModel.find({}).lean();
+    } else {
+      result = this.data.faculty;
     }
-    if (isMongoConnected) {
-      return await FacultyModel.find({}).lean();
-    }
-    return this.data.faculty;
+
+    memoryCache.faculty = result;
+    memoryCache.facultyTime = Date.now();
+    return result;
   }
 
   async getFacultyById(id) {
-    if (isSupabaseConnected) {
-      const { data } = await supabase.from('faculty').select('*').eq('id', id).maybeSingle();
-      return data;
-    }
-    if (isMongoConnected) {
-      return await FacultyModel.findOne({ id }).lean();
-    }
-    return this.data.faculty.find(f => f.id === id);
+    const facultyList = await this.getFaculty();
+    return facultyList.find(f => f.id === id);
   }
 
   // --- Projects ---
   async getProjects(filters = {}) {
+    const isDefaultShowcase = !filters.year && !filters.batchId && (!filters.status || filters.status === 'all') && !filters.mentorId && !filters.featured && !filters.search && (!filters.domain || filters.domain === 'all');
+    if (isDefaultShowcase && memoryCache.showcaseProjects && (Date.now() - memoryCache.showcaseTime < SHOWCASE_TTL_MS)) {
+      return memoryCache.showcaseProjects;
+    }
     if (isSupabaseConnected) {
       let q = supabase.from('projects').select('*');
       if (filters.year) q = q.eq('year', Number(filters.year));
@@ -288,6 +311,10 @@ class Database {
           p.teamLead?.name?.toLowerCase().includes(s) ||
           p.mentorName?.toLowerCase().includes(s)
         );
+      }
+      if (isDefaultShowcase) {
+        memoryCache.showcaseProjects = list;
+        memoryCache.showcaseTime = Date.now();
       }
       return list;
     }
@@ -477,6 +504,7 @@ class Database {
       createdAt: new Date().toISOString()
     };
 
+    memoryCache.showcaseProjects = null;
     if (isSupabaseConnected) {
       const { data, error } = await supabase.from('projects').insert(newProject).select().single();
       if (error) throw new Error(error.message);
@@ -494,6 +522,7 @@ class Database {
   }
 
   async updateProject(id, updates) {
+    memoryCache.showcaseProjects = null;
     if (isSupabaseConnected) {
       const { data, error } = await supabase.from('projects').update({ ...updates }).eq('id', id).select().single();
       if (error) throw new Error(error.message);
