@@ -3,14 +3,12 @@ import {
   Search, 
   Filter, 
   Sparkles, 
-  ExternalLink, 
   Heart, 
   CheckCircle2, 
   Clock, 
   AlertCircle, 
   Users, 
   GraduationCap, 
-  Tag, 
   Compass
 } from 'lucide-react';
 import { api } from '../services/api';

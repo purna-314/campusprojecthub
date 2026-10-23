@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  BarChart3, 
-  Users, 
   FolderKanban, 
   CheckCircle2, 
   Clock, 
   Download, 
   RefreshCw, 
   Plus, 
-  GraduationCap, 
-  Calendar,
-  Layers,
-  Sparkles,
-  Award
+  GraduationCap
 } from 'lucide-react';
 import { api } from '../services/api';
 
@@ -23,7 +17,7 @@ export default function AdminDashboard({
   faculty, 
   analytics, 
   onRefresh, 
-  onSelectProject 
+  onSelectProject: _onSelectProject 
 }) {
   const { user } = useAuth();
   const [showNewBatchModal, setShowNewBatchModal] = useState(false);

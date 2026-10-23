@@ -14,8 +14,6 @@ import {
   ShieldCheck, 
   Sparkles,
   ExternalLink,
-  GraduationCap,
-  Building2,
   KeyRound
 } from 'lucide-react';
 import { api } from '../services/api';
@@ -27,7 +25,6 @@ export default function AuthModal() {
     authModalTab, 
     setAuthModalTab, 
     pendingVerificationEmail, 
-    setPendingVerificationEmail,
     devVerificationNotice,
     login, 
     register, 
@@ -525,8 +522,7 @@ export default function AuthModal() {
                         value={regRollNo}
                         onChange={(e) => setRegRollNo(e.target.value)}
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
-                      >
-                      </input>
+                      />
                     </div>
                   </div>
                 )}

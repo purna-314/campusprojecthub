@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { api, getAuthToken, setAuthToken } from '../services/api';
+import { api, getAuthToken } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -106,7 +106,7 @@ export function AuthProvider({ children }) {
             });
         }
       }
-    } catch (e) {
+    } catch (_e) {
       // Ignore URL parsing errors
     }
   }, []);
@@ -186,7 +186,7 @@ export function AuthProvider({ children }) {
       });
       setUser(res.user);
       setToken(res.token);
-    } catch (err) {
+    } catch (_err) {
       // Fallback to local profile state if server is not reachable
       setUser(demo);
     }

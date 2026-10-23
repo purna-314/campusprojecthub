@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  UserCheck, 
   CheckCircle2, 
   Clock, 
-  AlertCircle, 
   ExternalLink, 
-  FileText, 
   Send, 
   Edit3, 
   Layers, 
-  GraduationCap, 
-  Users, 
-  Award,
-  Check,
-  X
+  Check
 } from 'lucide-react';
 import { api } from '../services/api';
 

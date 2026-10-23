@@ -7,8 +7,14 @@ import { sendVerificationEmail, sendPasswordResetEmail } from '../services/email
 import { requireAuth } from '../middleware/auth.js';
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'campus_project_hub_super_secret_jwt_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
+if (!JWT_SECRET) {
+  console.warn('\x1b[33m⚠ WARNING: JWT_SECRET is not set. Using insecure default for development only.\x1b[0m');
+}
+const EFFECTIVE_JWT_SECRET = JWT_SECRET || 'campus_project_hub_dev_only_secret_do_not_use_in_prod';
 
 // Helper to strip sensitive fields from user object
 function sanitizeUser(user) {
@@ -91,13 +97,16 @@ router.post('/register', async (req, res) => {
         clientUrl: process.env.CLIENT_URL || 'http://localhost:5173'
       });
 
-      return res.status(200).json({
+      const response = {
         message: 'Account exists but was unverified. A fresh 6-digit verification code has been dispatched to your email.',
         email: normalizedEmail,
-        devCode: emailResult.devCode || verificationCode,
-        previewUrl: emailResult.previewUrl || null,
         requiresVerification: true
-      });
+      };
+      if (!IS_PRODUCTION) {
+        response.devCode = emailResult.devCode || verificationCode;
+        response.previewUrl = emailResult.previewUrl || null;
+      }
+      return res.status(200).json(response);
     }
 
     // New User Registration
@@ -132,16 +141,19 @@ router.post('/register', async (req, res) => {
       clientUrl: process.env.CLIENT_URL || 'http://localhost:5173'
     });
 
-    res.status(201).json({
+    const response = {
       message: 'Account successfully registered! Please enter the 6-digit verification code sent to your email.',
       email: normalizedEmail,
-      devCode: emailResult.devCode || verificationCode,
-      previewUrl: emailResult.previewUrl || null,
       requiresVerification: true
-    });
+    };
+    if (!IS_PRODUCTION) {
+      response.devCode = emailResult.devCode || verificationCode;
+      response.previewUrl = emailResult.previewUrl || null;
+    }
+    res.status(201).json(response);
   } catch (err) {
     console.error('Error during registration:', err);
-    res.status(500).json({ error: 'Server error during registration: ' + err.message });
+    res.status(500).json({ error: IS_PRODUCTION ? 'Server error during registration' : 'Server error during registration: ' + err.message });
   }
 });
 
@@ -171,7 +183,7 @@ router.post('/verify-email', async (req, res) => {
       // Already verified, generate session token
       const authToken = jwt.sign(
         { id: user.id, email: user.email, role: user.role },
-        JWT_SECRET,
+        EFFECTIVE_JWT_SECRET,
         { expiresIn: JWT_EXPIRES_IN }
       );
 
@@ -209,7 +221,7 @@ router.post('/verify-email', async (req, res) => {
     // Generate JWT auth token
     const authToken = jwt.sign(
       { id: updatedUser.id, email: updatedUser.email, role: updatedUser.role },
-      JWT_SECRET,
+      EFFECTIVE_JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
 
@@ -220,7 +232,7 @@ router.post('/verify-email', async (req, res) => {
     });
   } catch (err) {
     console.error('Error during email verification:', err);
-    res.status(500).json({ error: 'Server error during verification: ' + err.message });
+    res.status(500).json({ error: IS_PRODUCTION ? 'Server error during verification' : 'Server error during verification: ' + err.message });
   }
 });
 
@@ -264,12 +276,15 @@ router.post('/resend-verification', async (req, res) => {
       clientUrl: process.env.CLIENT_URL || 'http://localhost:5173'
     });
 
-    res.json({
+    const response = {
       message: 'A fresh verification code has been dispatched to your email.',
       email: normalizedEmail,
-      devCode: emailResult.devCode || verificationCode,
-      previewUrl: emailResult.previewUrl || null
-    });
+    };
+    if (!IS_PRODUCTION) {
+      response.devCode = emailResult.devCode || verificationCode;
+      response.previewUrl = emailResult.previewUrl || null;
+    }
+    res.json(response);
   } catch (err) {
     console.error('Error resending verification code:', err);
     res.status(500).json({ error: 'Server error resending code: ' + err.message });
@@ -322,19 +337,22 @@ router.post('/login', async (req, res) => {
         previewUrl = result.previewUrl || null;
       }
 
-      return res.status(403).json({
+      const unverifiedResponse = {
         error: 'Your email address is not yet verified. Please verify your email to access the portal.',
         unverified: true,
         email: user.email,
-        devCode: code,
-        previewUrl
-      });
+      };
+      if (!IS_PRODUCTION) {
+        unverifiedResponse.devCode = code;
+        unverifiedResponse.previewUrl = previewUrl;
+      }
+      return res.status(403).json(unverifiedResponse);
     }
 
     // Generate JWT Token
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      JWT_SECRET,
+      EFFECTIVE_JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
 
@@ -394,11 +412,14 @@ router.post('/forgot-password', async (req, res) => {
         clientUrl: process.env.CLIENT_URL || 'http://localhost:5173'
       });
 
-      return res.json({
+      const response = {
         message: 'If an account matches that email, a password reset code has been sent.',
-        devCode: emailResult.devCode || resetCode,
-        previewUrl: emailResult.previewUrl || null
-      });
+      };
+      if (!IS_PRODUCTION) {
+        response.devCode = emailResult.devCode || resetCode;
+        response.previewUrl = emailResult.previewUrl || null;
+      }
+      return res.json(response);
     }
 
     // Always return benign message to prevent email enumeration

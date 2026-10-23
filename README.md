@@ -87,6 +87,70 @@ campus_project_hub/
 ## 🎯 Verification & Testing
 
 Both servers have been verified:
-- `http://localhost:5000/api/health` $\rightarrow$ OK
-- `http://localhost:5173` $\rightarrow$ Frontend live
-- End-to-end milestone submission and faculty grading workflow tested and operational.
+- `http://localhost:5000/api/health` → OK
+- `http://localhost:5173` → Frontend live & builds cleanly with zero errors
+- End-to-end milestone submission, faculty grading, role auth, and analytics operational.
+
+---
+
+## 🌐 Production Deployment Guide
+
+This project is pre-configured for production hosting with **Render** (Backend API) and **Vercel** (Frontend UI).
+
+### 1. Push to GitHub
+```bash
+git add .
+git commit -m "feat: audit, optimize and prepare project for production deployment"
+git push origin main
+```
+
+---
+
+### 2. Backend Deployment (Render.com)
+
+1. Sign in to [Render](https://render.com).
+2. Click **New +** $\rightarrow$ **Web Service**.
+3. Connect your GitHub repository.
+4. Set the following settings:
+   - **Name**: `campusprojecthub-api`
+   - **Root Directory**: `server`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `node src/index.js`
+   - **Health Check Path**: `/api/health`
+5. Under **Environment Variables**, add:
+   | Variable | Value / Description |
+   |---|---|
+   | `NODE_ENV` | `production` |
+   | `PORT` | `10000` (or leave default, Render sets this automatically) |
+   | `JWT_SECRET` | Strong random string (e.g., generate via `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"`) |
+   | `JWT_EXPIRES_IN` | `7d` |
+   | `CLIENT_URL` | Your Vercel frontend URL, e.g. `https://campusprojecthub.vercel.app` |
+   | `MONGODB_URI` *(Optional)* | MongoDB Atlas connection string (if omitted, falls back to local JSON store) |
+   | `SMTP_HOST` *(Optional)* | SMTP server host (e.g. `smtp.gmail.com`) for production OTP emails |
+   | `SMTP_PORT` *(Optional)* | `587` |
+   | `SMTP_USER` *(Optional)* | Your email address |
+   | `SMTP_PASS` *(Optional)* | Gmail App Password or SMTP credentials |
+   | `EMAIL_FROM` *(Optional)* | `"Campus Project Hub" <no-reply@campusprojecthub.edu>` |
+6. Click **Deploy Web Service** and copy your backend URL (e.g. `https://campusprojecthub-api.onrender.com`).
+
+*(Note: `server/render.yaml` is also included if using Render Blueprints)*
+
+---
+
+### 3. Frontend Deployment (Vercel)
+
+1. Sign in to [Vercel](https://vercel.com).
+2. Click **Add New...** $\rightarrow$ **Project**.
+3. Import your GitHub repository.
+4. In the project configuration:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: Click *Edit* and select `client`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Under **Environment Variables**, add:
+   | Variable | Value |
+   |---|---|
+   | `VITE_API_URL` | Your Render backend URL, e.g. `https://campusprojecthub-api.onrender.com` |
+6. Update `client/vercel.json` if using Vercel API rewrites with your deployed Render URL.
+7. Click **Deploy**. Vercel will build and publish your high-performance static React 19 application.

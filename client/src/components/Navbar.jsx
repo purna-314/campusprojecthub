@@ -6,12 +6,10 @@ import {
   PlusCircle, 
   Layers, 
   BarChart3, 
-  ShieldCheck,
   LogIn,
   LogOut,
   UserPlus,
   ChevronDown,
-  Sparkles,
   CheckCircle2,
   MailCheck
 } from 'lucide-react';

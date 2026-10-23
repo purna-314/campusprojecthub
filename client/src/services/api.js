@@ -1,11 +1,12 @@
-const API_BASE = '/api';
+const rawBase = import.meta.env.VITE_API_URL || '';
+const API_BASE = rawBase ? (rawBase.endsWith('/api') ? rawBase : `${rawBase.replace(/\/+$/, '')}/api`) : '/api';
 
 export const TOKEN_STORAGE_KEY = 'campus_auth_token';
 
 export function getAuthToken() {
   try {
     return localStorage.getItem(TOKEN_STORAGE_KEY);
-  } catch (e) {
+  } catch (_e) {
     return null;
   }
 }

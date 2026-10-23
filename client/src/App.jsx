@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Showcase from './components/Showcase';
@@ -22,7 +22,7 @@ function MainApp() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isNewProjectOpen, setIsNewProjectOpen] = useState(false);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       setLoading(true);
       const [projData, batchData, facData, analyticsData] = await Promise.all([
@@ -46,19 +46,25 @@ function MainApp() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedProject]);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
-  // When currentRole changes, if activeTab is not showcase, sync it to relevant dashboard
+  // When currentRole changes and user is NOT on showcase, sync to their dashboard.
+  // Using a ref-less derived approach: compute the correct tab, only call setter if it differs.
   useEffect(() => {
-    if (activeTab !== 'showcase') {
-      if (currentRole === 'student') setActiveTab('student_dashboard');
-      if (currentRole === 'faculty') setActiveTab('faculty_dashboard');
-      if (currentRole === 'admin') setActiveTab('admin_dashboard');
+    const roleTabMap = {
+      student: 'student_dashboard',
+      faculty: 'faculty_dashboard',
+      admin: 'admin_dashboard',
+    };
+    const targetTab = roleTabMap[currentRole];
+    if (targetTab && activeTab !== 'showcase') {
+      setActiveTab(targetTab);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentRole]);
 
   const selectedBatch = batches.find(b => b.id === selectedProject?.batchId);

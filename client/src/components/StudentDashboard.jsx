@@ -6,7 +6,6 @@ import {
   CheckCircle2, 
   Clock, 
   AlertCircle, 
-  ExternalLink, 
   Users, 
   GraduationCap, 
   Send, 

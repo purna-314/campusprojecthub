@@ -230,82 +230,6 @@
   ],
   "projects": [
     {
-      "id": "proj-1792475408568",
-      "title": "first project",
-      "batchId": "batch-2021-2025",
-      "year": 4,
-      "yearLabel": "4th Year (Senior)",
-      "projectType": "Major Capstone Project",
-      "department": "Computer Science & Engineering",
-      "domain": "AI / Machine Learning",
-      "tags": [
-        "React",
-        "Node.js",
-        "TailwindCSS"
-      ],
-      "abstract": "there is no absstract",
-      "githubUrl": "https:/github/projject",
-      "demoUrl": "https://campusprojecthub-three.vercel.app",
-      "status": "pending_review",
-      "overallScore": null,
-      "mentorId": "fac-101",
-      "mentorName": "Dr. Sarah Jenkins",
-      "teamLead": {
-        "name": "vamsi",
-        "rollNo": "25b95a6133",
-        "email": "purpav.16@gmail.com"
-      },
-      "teamMembers": [
-        {
-          "name": "vamsi",
-          "rollNo": "25b95a6133",
-          "email": "purpav.16@gmail.com",
-          "role": "Team Lead"
-        }
-      ],
-      "milestoneSubmissions": {
-        "m1": {
-          "status": "pending",
-          "submittedAt": null,
-          "fileUrl": null,
-          "githubBranch": null,
-          "notes": null,
-          "score": null,
-          "feedback": null
-        },
-        "m2": {
-          "status": "pending",
-          "submittedAt": null,
-          "fileUrl": null,
-          "githubBranch": null,
-          "notes": null,
-          "score": null,
-          "feedback": null
-        },
-        "m3": {
-          "status": "pending",
-          "submittedAt": null,
-          "fileUrl": null,
-          "githubBranch": null,
-          "notes": null,
-          "score": null,
-          "feedback": null
-        },
-        "m4": {
-          "status": "pending",
-          "submittedAt": null,
-          "fileUrl": null,
-          "githubBranch": null,
-          "notes": null,
-          "score": null,
-          "feedback": null
-        }
-      },
-      "featured": false,
-      "likes": 0,
-      "createdAt": "2026-10-20T05:50:08.568Z"
-    },
-    {
       "id": "proj-1788842552235",
       "title": "sdgasg",
       "batchId": "batch-2021-2025",
@@ -560,7 +484,7 @@
       "isVerified": true,
       "verificationCode": null,
       "verificationExpires": null,
-      "createdAt": "2026-10-20T03:27:16.246Z"
+      "createdAt": "2026-10-23T12:48:25.495Z"
     },
     {
       "id": "fac-101",
@@ -579,7 +503,7 @@
       "isVerified": true,
       "verificationCode": null,
       "verificationExpires": null,
-      "createdAt": "2026-10-20T03:27:16.248Z"
+      "createdAt": "2026-10-23T12:48:25.497Z"
     },
     {
       "id": "admin-1",
@@ -598,122 +522,7 @@
       "isVerified": true,
       "verificationCode": null,
       "verificationExpires": null,
-      "createdAt": "2026-10-20T03:27:16.248Z"
-    },
-    {
-      "id": "user-1792466894849-lm6cg",
-      "name": "Jordan Lee",
-      "email": "test.student.1792466894681@campus.edu",
-      "password": "$2b$10$FeTecp/qAkgJVVJbD3U6KOanEqiKu.7a1.Ud9kLkb3fIavjWV7WzG",
-      "role": "student",
-      "rollNo": "23CS188",
-      "year": 2,
-      "yearLabel": "2nd Year",
-      "batchId": "",
-      "batchName": "",
-      "department": "Computer Science & Engineering",
-      "designation": "2nd Year Student",
-      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Jordan%20Lee&backgroundColor=2563eb,4f46e5,0891b2",
-      "isVerified": true,
-      "verificationCode": null,
-      "verificationToken": null,
-      "verificationExpires": null,
-      "resetPasswordCode": null,
-      "resetPasswordExpires": null,
-      "createdAt": "2026-10-20T03:28:14.849Z",
-      "updatedAt": "2026-10-20T03:28:20.922Z"
-    },
-    {
-      "id": "user-1792466921018-ekrkw",
-      "name": "Jordan Lee",
-      "email": "test.student.1792466920848@campus.edu",
-      "password": "$2b$10$.usHhsbHIIADaZL1ct46cuNLuvbyNQ6LAgjEZXDl87jujEuSMxICe",
-      "role": "student",
-      "rollNo": "23CS188",
-      "year": 2,
-      "yearLabel": "2nd Year",
-      "batchId": "",
-      "batchName": "",
-      "department": "Computer Science & Engineering",
-      "designation": "2nd Year Student",
-      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=Jordan%20Lee&backgroundColor=2563eb,4f46e5,0891b2",
-      "isVerified": true,
-      "verificationCode": null,
-      "verificationToken": null,
-      "verificationExpires": null,
-      "resetPasswordCode": null,
-      "resetPasswordExpires": null,
-      "createdAt": "2026-10-20T03:28:41.018Z",
-      "updatedAt": "2026-10-20T03:28:46.590Z"
-    },
-    {
-      "id": "user-1792467731153-nhlv7",
-      "name": "kittu",
-      "email": "purnasrivattikuti@gmail.com",
-      "password": "$2b$10$SQtk2UxzedSC8VOK6TcRGurqwk1t01offGXuha4zMHnr6PAftnk6C",
-      "role": "student",
-      "rollNo": "25b95a6129",
-      "year": 3,
-      "yearLabel": "3rd Year",
-      "batchId": "",
-      "batchName": "",
-      "department": "Computer Science & Engineering",
-      "designation": "3rd Year Student",
-      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=kittu&backgroundColor=2563eb,4f46e5,0891b2",
-      "isVerified": true,
-      "verificationCode": null,
-      "verificationToken": null,
-      "verificationExpires": null,
-      "resetPasswordCode": null,
-      "resetPasswordExpires": null,
-      "createdAt": "2026-10-20T03:42:11.153Z",
-      "updatedAt": "2026-10-20T03:42:29.588Z"
-    },
-    {
-      "id": "user-1792471372177-qmcud",
-      "name": "vamsi",
-      "email": "purpav.16@gmail.com",
-      "password": "$2b$10$hzO67C/b8gLgdapyJGSXK.Dr0wTWjNlfJ6aDRk8YOmYbDrlTPqcOa",
-      "role": "student",
-      "rollNo": "25b95a6133",
-      "year": 1,
-      "yearLabel": "1st Year",
-      "batchId": "",
-      "batchName": "",
-      "department": "Computer Science & Engineering",
-      "designation": "",
-      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=vamsi&backgroundColor=2563eb,4f46e5,0891b2",
-      "isVerified": true,
-      "verificationCode": null,
-      "verificationToken": null,
-      "verificationExpires": null,
-      "resetPasswordCode": null,
-      "resetPasswordExpires": null,
-      "createdAt": "2026-10-20T04:42:52.177Z",
-      "updatedAt": "2026-10-20T04:47:45.439Z"
-    },
-    {
-      "id": "user-1792476382313-vt12e",
-      "name": "ghjgkjgh",
-      "email": "jgfhgfhg@gmail.com",
-      "password": "$2b$10$849Dm504/GCfAXi2bA..ueH/Xtz42jZJO6KbhUSX8IYFUvGQPEDYC",
-      "role": "student",
-      "rollNo": "25k69l3578",
-      "year": 1,
-      "yearLabel": "1st Year",
-      "batchId": "",
-      "batchName": "",
-      "department": "Computer Science & Engineering",
-      "designation": "1st Year Student",
-      "avatar": "https://api.dicebear.com/7.x/initials/svg?seed=ghjgkjgh&backgroundColor=2563eb,4f46e5,0891b2",
-      "isVerified": true,
-      "verificationCode": null,
-      "verificationToken": null,
-      "verificationExpires": null,
-      "resetPasswordCode": null,
-      "resetPasswordExpires": null,
-      "createdAt": "2026-10-20T06:06:22.313Z",
-      "updatedAt": "2026-10-20T06:06:29.725Z"
+      "createdAt": "2026-10-23T12:48:25.497Z"
     }
   ]
 }

@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { db } from '../db.js';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'campus_project_hub_super_secret_jwt_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET;
+const EFFECTIVE_JWT_SECRET = JWT_SECRET || 'campus_project_hub_dev_only_secret_do_not_use_in_prod';
 
 /**
  * Middleware: Requires a valid JWT token
@@ -16,7 +17,7 @@ export async function requireAuth(req, res, next) {
     const token = authHeader.split(' ')[1];
     let decoded;
     try {
-      decoded = jwt.verify(token, JWT_SECRET);
+      decoded = jwt.verify(token, EFFECTIVE_JWT_SECRET);
     } catch (err) {
       return res.status(401).json({ error: 'Invalid or expired session. Please sign in again.' });
     }
@@ -43,7 +44,7 @@ export async function optionalAuth(req, res, next) {
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const token = authHeader.split(' ')[1];
       try {
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jwt.verify(token, EFFECTIVE_JWT_SECRET);
         const user = await db.getUserById(decoded.id);
         if (user) {
           req.user = user;
